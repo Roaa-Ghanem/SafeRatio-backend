@@ -35,9 +35,9 @@ def get_secret_key():
 SECRET_KEY = get_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'False'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1', '.onrender.com',).split(',')
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -106,18 +106,20 @@ WSGI_APPLICATION = 'saferatio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default':
+        dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+        ),
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
 
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'saferatio',
-        'USER': 'postgres',
-        'PASSWORD': 'roaa',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'saferatio',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'roaa',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
     }
-}
 
 
 # Password validation
