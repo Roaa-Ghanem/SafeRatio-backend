@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}لوحة التحكم - SafeRatio{% endblock %}
+
+{% block content %}
+<!-- Welcome Section -->
+<div class="welcome-section fade-in-up" style="margin-bottom: 2rem;">
+    <div class="card">
+        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+            <h1 style="margin: 0; font-size: 2rem; display: flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-tachometer-alt"></i>
+                مرحباً بك في SafeRatio! 🎉
+            </h1>
+        </div>
+        <div class="card-body">
+            <p style="font-size: 1.1rem; color: var(--gray); margin: 0;">
+                لوحة التحكم الرئيسية لنظام حساب التأمين الذكي - آخر تحديث: {% now "j F Y" %}
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Overview -->
+<div class="stats-grid fade-in-up" style="animation-delay: 0.1s;">
+    <div class="stat-card">
+        <div class="stat-icon primary">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <h3>0</h3>
+            <p>المستخدمون المسجلون</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon success">
+            <i class="fas fa-car-side"></i>
+        </div>
+        <div class="stat-info">
+            <h3>0</h3>
+            <p>عمليات تأمين السيارات</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon warning">
+            <i class="fas fa-building"></i>
+        </div>
+        <div class="stat-info">
+            <h3>0</h3>
+            <p>الشركات المسجلة</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon secondary">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="stat-info">
+            <h3>0</h3>
+            <p>التقارير المولدة</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="grid-2 fade-in-up" style="animation-delay: 0.2s;">
+    <!-- Individual Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-user"></i>
+                للأفراد
+            </h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; gap: 1rem;">
+                <a href="/car-insurance/calculate/" class="btn btn-primary" style="justify-content: start;">
+                    <i class="fas fa-calculator"></i>
+                    حساب تأمين السيارة
+                </a>
+                <a href="/car-insurance/history/" class="btn btn-outline" style="justify-content: start;">
+                    <i class="fas fa-history"></i>
+                    سجل العمليات
+                </a>
+                <a href="/profile/" class="btn btn-outline" style="justify-content: start;">
+                    <i class="fas fa-user-edit"></i>
+                    إدارة الملف الشخصي
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Organization Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-building"></i>
+                للشركات
+            </h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; gap: 1rem;">
+                <a href="/health-insurance/upload/" class="btn btn-primary" style="justify-content: start;">
+                    <i class="fas fa-upload"></i>
+                    رفع بيانات الموظفين
+                </a>
+                <a href="/health-insurance/reports/" class="btn btn-outline" style="justify-content: start;">
+                    <i class="fas fa-chart-pie"></i>
+                    التقارير والإحصائيات
+                </a>
+                <a href="/organization/settings/" class="btn btn-outline" style="justify-content: start;">
+                    <i class="fas fa-cogs"></i>
+                    إعدادات الشركة
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="card fade-in-up" style="animation-delay: 0.3s;">
+    <div class="card-header">
+        <h3 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-clock"></i>
+            النشاط الأخير
+        </h3>
+    </div>
+    <div class="card-body">
+        <div style="text-align: center; padding: 2rem; color: var(--gray);">
+            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <p>لا يوجد نشاط حديث. ابدأ باستخدام النظام من خلال الأزرار أعلاه.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

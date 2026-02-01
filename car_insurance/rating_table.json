@@ -1,0 +1,80 @@
+{
+  "base_rates": {
+    "car": 800.00,
+    "suv": 1000.00,
+    "truck": 1200.00,
+    "motorcycle": 600.00
+  },
+  "coverage_multipliers": {
+    "third_party": 0.6,
+    "third_party_fire_theft": 0.8,
+    "comprehensive": 1.2
+  },
+  "vehicle_age": {
+    "new_less_than_years": 3,
+    "multipliers": {
+      "new": 1.3,
+      "medium": 1.1,
+      "older": 0.9
+    }
+  },
+  "vehicle_value_tiers": {
+    "luxury_threshold": 50000.00,
+    "mid_threshold": 25000.00,
+    "multipliers": {
+      "luxury": 1.4,
+      "midrange": 1.2,
+      "economy": 0.9
+    }
+  },
+  "engine_size_multipliers": {
+    "large_threshold": 3.0,
+    "mid_threshold": 2.0,
+    "multipliers": {
+      "large": 1.2,
+      "mid": 1.1,
+      "small": 1.0
+    }
+  },
+  "driver_age": {
+    "young_threshold": 25,
+    "young_adult_threshold": 30,
+    "senior_threshold": 65,
+    "multipliers": {
+      "young": 1.5,
+      "young_adult": 1.2,
+      "senior": 1.3,
+      "prime": 1.0
+    }
+  },
+  "claims_penalty_per_claim": 0.20,
+  "no_claims": {
+    "per_year": 0.05,
+    "max": 0.30
+  },
+  "depreciation_by_age_years_percent": {
+    "0_to_1": 10,
+    "2": 15,
+    "3": 20,
+    "4": 25,
+    "5": 30,
+    "6": 35,
+    "7": 40,
+    "8": 45,
+    "9_plus": 50
+  },
+  "min_premium": 200.00,
+  "standard_excess": 500.00,
+  "short_term_rates_percent_of_annual": {
+    "15_days": 12.5,
+    "1_month": 25,
+    "2_months": 37.5,
+    "3_months": 50,
+    "4_months": 60,
+    "5_months": 70,
+    "6_months": 75,
+    "7_months": 80,
+    "8_months": 85,
+    "more_than_8_months": 100
+  }
+}

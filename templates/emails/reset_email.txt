@@ -1,0 +1,10 @@
+Hello {{ user.first_name }} {{ user.last_name }},
+
+You requested a password reset for your SafeRatio account. Click the link below to reset your password:
+
+{{ reset_link }}
+
+If you did not request this, please ignore this email.
+
+Thanks,
+SafeRatio Team

@@ -1,0 +1,196 @@
+<!-- templates/health_insurance/policy_pdf_template.html -->
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>وثيقة تأمين - {{ policy_number }}</title>
+</head>
+<body>
+    <!-- رأس الوثيقة -->
+    <div class="header">
+        <h1>بيان تغطية تأمينية صحية</h1>
+        <p class="subtitle">(وثيقة معلوماتية غير ملزمة قانونيًا)</p>
+        <div>
+            <strong>رقم الوثيقة:</strong> {{ policy_number }}
+            <span style="margin: 0 20px;">|</span>
+            <strong>تاريخ الإنشاء:</strong> {{ generated_date_arabic }}
+        </div>
+    </div>
+
+    <!-- معلومات الوثيقة الأساسية -->
+    <div class="section">
+        <div class="section-title">المعلومات الأساسية</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">الشركة:</span>
+                <span class="info-value">{{ company_name }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">خطة التغطية:</span>
+                <span class="info-value">{{ coverage_plan_name }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">نوع التغطية:</span>
+                <span class="info-value">{{ insurance_type_name }} ({{ insurance_type }})</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">حالة الوثيقة:</span>
+                <span class="info-value success-text">{{ status_display }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- فترة التغطية -->
+    <div class="section">
+        <div class="section-title">فترة التغطية</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">تاريخ البدء:</span>
+                <span class="info-value">{{ inception_date_arabic }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">تاريخ الانتهاء:</span>
+                <span class="info-value">{{ expiry_date_arabic }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">الأيام المتبقية:</span>
+                <span class="info-value primary-text">{{ days_remaining }} يوم</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">مدة الصلاحية:</span>
+                <span class="info-value">سنة واحدة</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- التفاصيل المالية -->
+    <div class="section">
+        <div class="section-title">التفاصيل المالية</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>البند</th>
+                    <th>المبلغ (دولار)</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>القسط الإجمالي</td>
+                    <td class="success-text">{{ total_premium }}</td>
+                    <td>إجمالي</td>
+                </tr>
+                <tr>
+                    <td>القسط السنوي</td>
+                    <td>{{ annual_premium }}</td>
+                    <td>سنوي</td>
+                </tr>
+                <tr>
+                    <td>القسط الشهري</td>
+                    <td>{{ monthly_premium }}</td>
+                    <td>شهري</td>
+                </tr>
+                <tr>
+                    <td>المبلغ المدفوع</td>
+                    <td class="success-text">{{ paid_amount }}</td>
+                    <td>{{ payment_status_display }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>المبلغ المتبقي</strong></td>
+                    <td class="danger-text"><strong>{{ due_amount }}</strong></td>
+                    <td><strong>قيد الدفع</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- تفاصيل التغطية -->
+    <div class="section">
+        <div class="section-title">تفاصيل التغطية</div>
+        <div class="coverage-summary">
+            <h3 style="text-align: center; color: #007bff; margin-bottom: 20px;">
+                نطاق التغطية التأمينية
+            </h3>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>نوع التغطية</th>
+                        <th>النسبة</th>
+                        <th>ملاحظات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الموظفون</td>
+                        <td>100%</td>
+                        <td>التغطية الأساسية</td>
+                    </tr>
+                    {% if family_members.spouses %}
+                    <tr>
+                        <td>الزوجات</td>
+                        <td>50%</td>
+                        <td>حسب خطة التغطية</td>
+                    </tr>
+                    {% endif %}
+                    {% if family_members.children %}
+                    <tr>
+                        <td>الأبناء</td>
+                        <td>50%</td>
+                        <td>حتى سن 21 سنة</td>
+                    </tr>
+                    {% endif %}
+                    {% if family_members.parents %}
+                    <tr>
+                        <td>الوالدان</td>
+                        <td>30%</td>
+                        <td>بشروط خاصة</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- إخلاء المسؤولية -->
+    <div class="section">
+        <div class="section-title">إخلاء المسؤولية</div>
+        <div class="warning-box">
+            <h4 style="color: #856404; margin-top: 0;">تنبيه هام:</h4>
+            <ul style="margin-bottom: 0;">
+                <li>هذا البيان استرشادي وغير ملزم قانونيًا</li>
+                <li>لا يُعد عقد تأمين رسمي</li>
+                <li>جميع الأسعار تقديرية وقابلة للتغيير</li>
+                <li>يخضع للتقييم النهائي من شركة التأمين</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- التوقيعات -->
+    <div class="signature-section">
+        <div style="display: flex; justify-content: space-around; margin-top: 50px;">
+            <div class="signature-box">
+                <p><strong>شركة التأمين</strong></p>
+                <p>SafeRatio Insurance</p>
+                <div class="signature-line"></div>
+                <p style="margin-top: 10px;">التوقيع والختم</p>
+            </div>
+            
+            <div class="signature-box">
+                <p><strong>الطرف المؤمَّن له</strong></p>
+                <p>{{ company_name }}</p>
+                <div class="signature-line"></div>
+                <p style="margin-top: 10px;">التوقيع والختم</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الوثيقة -->
+    <div class="footer">
+        <p>تم إنشاء هذا البيان آليًا بواسطة نظام SafeRatio للتأمين الصحي</p>
+        <p>تاريخ الإنشاء: {{ generated_date }}</p>
+        <p>رقم المرجع: {{ policy_number }}</p>
+        <p>www.saferatio.com | info@saferatio.com</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}تسجيل الدخول - SafeRatio{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 2rem auto;">
+    <div class="card fade-in-up">
+        <div class="card-header" style="text-align: center;">
+            <h2 style="margin: 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                <i class="fas fa-sign-in-alt"></i>
+                تسجيل الدخول
+            </h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div style="display: grid; gap: 1rem;">
+                    <div>
+                        <label for="username" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--dark);">
+                            <i class="fas fa-user"></i>
+                            اسم المستخدم
+                        </label>
+                        <input type="text" id="username" name="username" required 
+                               style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: border-color 0.3s;"
+                               onfocus="this.style.borderColor='var(--primary)'"
+                               onblur="this.style.borderColor='var(--border)'">
+                    </div>
+                    
+                    <div>
+                        <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--dark);">
+                            <i class="fas fa-lock"></i>
+                            كلمة المرور
+                        </label>
+                        <input type="password" id="password" name="password" required 
+                               style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; transition: border-color 0.3s;"
+                               onfocus="this.style.borderColor='var(--primary)'"
+                               onblur="this.style.borderColor='var(--border)'">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100; margin-top: 1rem;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
+                    </button>
+                </div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <p style="color: var(--gray); margin-bottom: 1rem;">لا تملك حساباً؟</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="{% url 'register_individual' %}" class="btn btn-outline" style="flex: 1;">
+                        <i class="fas fa-user"></i>
+                        تسجيل فرد
+                    </a>
+                    <a href="{% url 'register_organization' %}" class="btn btn-outline" style="flex: 1;">
+                        <i class="fas fa-building"></i>
+                        تسجيل شركة
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
