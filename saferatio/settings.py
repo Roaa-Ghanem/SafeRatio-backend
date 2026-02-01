@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
+import dj_databaes_url
 # from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
