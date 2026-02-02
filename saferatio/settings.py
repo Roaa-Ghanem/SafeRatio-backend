@@ -105,14 +105,25 @@ WSGI_APPLICATION = 'saferatio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+WSGI_APPLICATION = 'saferatio.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:roaa@localhost:5432/saferatio',
-        conn_max_age=600,
-        engine='django.db.backends.postgresql',
-    )
-}
+# ⭐⭐⭐ DATABASE CONFIGURATION FOR RENDER ⭐⭐⭐
+DATABASE_URL = os.environ.get('postgresql://saferatiodb_user:Nxz5WuUHvsWLuRgPVP5eIepFCVMTMfJZ@dpg-d5vophd6ubrc73cns3ag-a/saferatiodb')
+
+if DATABASE_URL:
+    # For Render production
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    # For local development - تأكد من أن PostgreSQL يعمل محلياً
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgresql://postgres:roaa@localhost:5432/saferatio',
+            conn_max_age=600,
+            engine='django.db.backends.postgresql',
+        )
+    }
 
 
 # Password validation
