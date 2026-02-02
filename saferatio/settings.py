@@ -29,14 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Temporary: Direct configuration without decouple
-def get_secret_key():
-    # Try to get from environment variable, or use a fallback for development
-    return os.environ.get('SECRET_KEY', 'django-insecure-dke@vu06)a3^%kw=#b0$gx@acl7w^0r2*0f+(*c*dk47_2a9z8')
+# def get_secret_key():
+#     # Try to get from environment variable, or use a fallback for development
+#     return os.environ.get('SECRET_KEY', 'django-insecure-dke@vu06)a3^%kw=#b0$gx@acl7w^0r2*0f+(*c*dk47_2a9z8')
 
-SECRET_KEY = get_secret_key()
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com',).split(',')
 
@@ -107,20 +107,12 @@ WSGI_APPLICATION = 'saferatio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default':
-        dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
-        ),
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'saferatio',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'roaa',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://postgres:roaa@localhost:5432/saferatio',
+        conn_max_age=600,
+        engine='django.db.backends.postgresql',
+    )
+}
 
 
 # Password validation

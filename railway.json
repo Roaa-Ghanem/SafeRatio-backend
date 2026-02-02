@@ -1,0 +1,11 @@
+{
+    "build": {
+      "builder": "NIXPACKS",
+      "buildCommand": "cd backend && pip install -r requirements.txt"
+    },
+    "deploy": {
+      "startCommand": "cd backend && python manage.py migrate && gunicorn saferatio.wsgi:application",
+      "healthcheckPath": "/admin/",
+      "healthcheckTimeout": 300
+    }
+  }
